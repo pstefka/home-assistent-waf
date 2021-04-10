@@ -72,8 +72,8 @@ docker-compose run --rm --entrypoint "\
     $domain_args \
     --rsa-key-size $rsa_key_size \
     --agree-tos \
-    --manual-auth-hook "/duckdns-hook.sh deploy_challenge ${token}" \
-    --manual-cleanup-hook "/duckdns-hook.sh clean_challenge ${token}" \
+    --manual-auth-hook \"/duckdns-hook.sh deploy_challenge ${token}\" \
+    --manual-cleanup-hook \"/duckdns-hook.sh clean_challenge ${token}\" \
     --force-renewal" certbot
 echo
 
