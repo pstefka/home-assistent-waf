@@ -77,5 +77,9 @@ docker-compose run --rm --entrypoint "\
 echo
 
 echo "### Reloading nginx ..."
-docker-compose up --force-recreate -d nginx
+if [ $staging != "0" ]; then
+  echo "Skipping for staging environment"
+else
+  docker-compose up --force-recreate -d
+fi
 

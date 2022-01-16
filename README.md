@@ -8,10 +8,17 @@ In this repo, you can find a prototype of a HA WAF with Lets Encrypt certbot for
 - set server_name
 - set cert paths
 - set upstreamServer URL
-# 3) run initial Lets Encrypt certs using DNS-01 challenge
-- run init-letsencrypt-dns.sh
+# 3a) dry-run initial Lets Encrypt certs using DNS-01 challenge
+- try a "dry-run" init-letsencrypt-dns.sh
 `init-letsencrypt-dns.sh <comma-sepparated-list-of-3rdlevel.duckdns.org> <email> <duckdns-token>`
-# 4) docker-compose up ?
+to avoid hitting request limits, staging LE platform is used to check functionality
+# 3b) run initial Lets Encrypt certs using DNS-01 challenge
+- if successful, repeat and add 4th parameter = staging with value 0 = uses live API
+`init-letsencrypt-dns.sh <comma-sepparated-list-of-3rdlevel.duckdns.org> <email> <duckdns-token> 0`
+note: docker-compose up -d is run at the end to launch the reverse proxy & automatic (daily) certbot renewal
+# 4) configure HASS
+- configure HASS reverse proxy access - see use_x_forwarded_for, and trusted_proxies at https://www.home-assistant.io/integrations/http
+
 # TODO:
 - no root nginx 
 
